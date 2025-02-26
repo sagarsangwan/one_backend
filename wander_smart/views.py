@@ -4,5 +4,6 @@ from rest_framework.response import Response
 
 class GenerateTripPlan(APIView):
     def get(self, request):
+        content = request.get("content")
         names = ["sagar", "kalpu", "ruby", "chinki"]
         return Response(names)
