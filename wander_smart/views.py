@@ -26,7 +26,7 @@ def generate_slug(trip_name):
 
 
 def get_trip_plan_from_ai(travel_prompt):
-    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
     travel_prompt = travel_prompt
     # Load Google Gemini API key
     genai.configure(api_key=GEMINI_API_KEY)
