@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["iamsagarsangwan.pythonanywhere.com", "localhost", "127.0.0.1:8000/"]
 
 
 # Application definition
@@ -122,9 +122,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # cors settings
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://wander-smart.vercel.app"]
 
 CORS_ALLOW_METHODS = (
     # "DELETE",
