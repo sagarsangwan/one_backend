@@ -74,7 +74,7 @@ class GenerateTripPlan(APIView):
                 "hotelDetails": parsed_ai_result["hotel_details"],
                 "itineraryPlan": parsed_ai_result["daily_wise_itinerary_plan"],
                 "tripDescription": parsed_ai_result["trip_description"],
-                "timeToRead": parsed_ai_result["time_to_read"],
+                "timeToRead": str(parsed_ai_result["time_to_read"]),
                 "averageBudgetPerPerson": parsed_ai_result["average_budget_per_person"],
                 "travelTips": parsed_ai_result["travel_tips"],
                 "localCuisines": parsed_ai_result["local_cuisines"],
@@ -87,9 +87,11 @@ class GenerateTripPlan(APIView):
                 {
                     "message": "Your itinerary is generated from Gemini AI! 🎉 wait we are updating it to database",
                     "data": trip_plan,
-                    "status": 200,
                 },
-                status.HTTP_500_INTERNAL_SERVER_ERROR,
+                status.HTTP_200_OK,
             )
         except Exception as e:
-            return ({"message": str(e)}, status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return (
+                {"message": "Something went wrong please try again after sometime"},
+                status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
