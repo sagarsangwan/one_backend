@@ -21,4 +21,5 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("wander-smart/api/", include("wander_smart.urls")),
+    path("postmate-ai/api/", include("postmate_ai.urls")),
 ]
