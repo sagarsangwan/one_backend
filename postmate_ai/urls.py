@@ -3,7 +3,7 @@ from .views import GeneratePostCaptions
 
 urlpatterns = [
     path(
-        "generate-captions",
+        "generate-post-captions/",
         GeneratePostCaptions.as_view(),
         name="generate-post-captions",
     )
