@@ -32,7 +32,7 @@ def get_trip_plan_from_ai(travel_prompt):
     genai.configure(api_key=GEMINI_API_KEY)
 
     # Set up Gemini AI model
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.5-flash")
     response = model.generate_content(travel_prompt)
     ai_result = response.text
     # Remove code block markers and strip whitespace
@@ -54,7 +54,9 @@ class GenerateTripPlan(APIView):
             trip_duration = data["tripDuration"]
             group_size = data["groupSize"]
             budget = data["budget"]
+            print(budget)
             if not (destination and trip_duration and group_size and budget):
+                print("nottttttttttttttttttttttttttttttttt")
                 return Response(
                     {"message": "Missing required fields"},
                     status.HTTP_400_BAD_REQUEST,
@@ -65,8 +67,9 @@ class GenerateTripPlan(APIView):
                 group_size=group_size,
                 budget=budget,
             )
-            parsed_ai_result = get_trip_plan_from_ai(travel_prompt=travel_prompt)
 
+            parsed_ai_result = get_trip_plan_from_ai(travel_prompt=travel_prompt)
+            print(parsed_ai_result, "................")
             trip_plan = {
                 "tripName": parsed_ai_result["trip_name"],
                 "destination": destination,
@@ -91,7 +94,9 @@ class GenerateTripPlan(APIView):
                 status.HTTP_200_OK,
             )
         except Exception as e:
-            return (
+
+            print(f"Error generating trip plan: {e}")  # helpful to log the actual error
+            return Response(
                 {"message": "Something went wrong please try again after sometime"},
-                status.HTTP_500_INTERNAL_SERVER_ERROR,
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,  # Use the 'status' keyword argument
             )

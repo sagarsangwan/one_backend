@@ -10,10 +10,10 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "localhost",
     "127.0.0.1",
-    ".onrender.com",  # Recommended: Allows any subdomain on render.com
-    "one-backend-v8dx.onrender.com",  # Your specific URL for clarity
+    "localhost",
+    # "http://127.0.0.1:3000",
+    "one-backend-v8dx.onrender.com",
 ]
 
 INSTALLED_APPS = [
@@ -117,10 +117,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # cors settings
 CORS_ALLOWED_ORIGINS = [
-    "https://testsprint.vercel.app",
-    "localhost",
-    "http://localhost:3000",
-    "127.0.0.1",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+    "http://127.0.0.1:3000",
+    "https://one-backend-v8dx.onrender.com",
 ]
 
 CORS_ALLOW_METHODS = (
