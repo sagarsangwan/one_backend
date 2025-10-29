@@ -9,8 +9,12 @@ load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = True
 
-ALLOWED_HOSTS = ["iamsagarsangwan.pythonanywhere.com", "localhost", "127.0.0.1:8000/"]
-
+ALLOWED_HOSTS = [
+    "localhost",
+    "127.0.0.1",
+    ".onrender.com",  # Recommended: Allows any subdomain on render.com
+    "one-backend-v8dx.onrender.com",  # Your specific URL for clarity
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -113,10 +117,9 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # cors settings
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "https://wander-smart.vercel.app",
-    "your-app-name.onrender.com",
+    "https://testsprint.vercel.app",
     "localhost",
+    "http://localhost:3000",
     "127.0.0.1",
 ]
 
