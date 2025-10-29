@@ -60,15 +60,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "one_backend.wsgi.application"
 
+import os
+import dj_database_url
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+# Check for the DATABASE_URL environment variable provided by Render
+if "DATABASE_URL" in os.environ:
+    DATABASES = {"default": dj_database_url.config(conn_max_age=600, ssl_require=True)}
+else:
+    # Local development settings
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
@@ -100,19 +105,20 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
 STATIC_URL = "static/"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 # cors settings
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://wander-smart.vercel.app"]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://wander-smart.vercel.app",
+    "your-app-name.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
 
 CORS_ALLOW_METHODS = (
     # "DELETE",
